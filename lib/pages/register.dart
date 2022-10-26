@@ -8,6 +8,7 @@ import 'package:flutter/src/material/icons.dart';
 import 'package:http/http.dart' as http;
 
 import '../classes/user.dart';
+import '../utils/constants.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -24,8 +25,8 @@ class _RegisterPageState extends State<RegisterPage> {
     /* var res =  await http.post(url, headers: {'Context-Type': 'application/json'}, body: json.encode({
       'username': user.username, 'password': user.password}
     )); */
-    var res = await http
-        .get('$url?user=${user.username}&&pass=${user.password}');
+    var res =
+        await http.get('$url?user=${user.username}&&pass=${user.password}');
     //print(res.body);
     if (res.body != null) {
       Navigator.pop(context);
@@ -44,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 700,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(233, 65, 82, 1),
+                    color: kPrimaryColor,
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(30))),
                 child: Column(
@@ -53,7 +54,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       height: 100,
                     ),
                     Text(
-                      "Login",
+                      "Register",
                       style: GoogleFonts.pacifico(
                           fontWeight: FontWeight.bold,
                           fontSize: 50,
@@ -64,14 +65,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(
                       height: 30,
                     ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Email",
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Color.fromRGBO(255, 255, 255, 0.8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Email",
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Color.fromRGBO(255, 255, 255, 0.8),
+                          ),
                         ),
                       ),
                     ),
@@ -98,14 +102,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     SizedBox(height: 30),
 
                     //password
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Text(
-                        "Password",
-                        style: GoogleFonts.roboto(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          color: Color.fromRGBO(255, 255, 255, 0.8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "Password",
+                          style: GoogleFonts.roboto(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30,
+                            color: Color.fromRGBO(255, 255, 255, 0.8),
+                          ),
                         ),
                       ),
                     ),
@@ -147,20 +154,26 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
               ),
-              Container(
-                  height: 70,
-                  width: 70,
-                  color: Color.fromRGBO(233, 65, 82, 1),
-                  child: InkWell(
-                    child: TextButton(
-                      onPressed: () {
-                        save();
-                        
-                      },
-                      
-                      child: Text("Entrar"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                    height: 80,
+                    width: 80,
+                    decoration: BoxDecoration(
+                      color: kPrimaryColor,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  )),
+                    child: InkWell(
+                      child: TextButton(
+                        onPressed: () {
+                          save();
+                        },
+                        child: Center(child: Text("Entrar",
+                                  style: GoogleFonts.roboto(
+                                      fontSize: 20, color: Colors.white),)),
+                      ),
+                    )),
+              ),
             ],
           ),
         ),
